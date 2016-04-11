@@ -36,10 +36,10 @@ header .desc-box{
 	margin-top: 16px;
 	margin-left: 18px;
 	float: left;
-	color:#eee;
 }
 header .desc-box h3{
-	line-height: 16px;
+	color:#ddd;
+	line-height: 18px;
 }
 header .btn-box{
 	margin-top: 16px;
