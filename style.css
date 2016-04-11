@@ -35,7 +35,7 @@ header .btn-box{
 	margin-right: 24px;
 	float: right;
 }
-header .btn-box .btn-signup{
+header .btn-box .btn-download{
 	background-color: rgba(255,255,255,0);
 	border: solid 1px #eee;
 	border-radius: 10px;
@@ -46,11 +46,11 @@ header .btn-box .btn-signup{
 	cursor: pointer;
 	transition: all 0.3s ease-in-out;
 }
-header .btn-box .btn-signup:hover{
+header .btn-box .btn-download:hover{
 	background-color: rgba(255,255,255,1);
 	color: #00aadd;
 }
-header .btn-box .btn-signin{
+header .btn-box .btn-code{
 	background-color: rgba(255,255,255,0.3);
 	border-radius: 10px;
 	padding: 10px 25px;
@@ -59,7 +59,7 @@ header .btn-box .btn-signin{
 	display: inline-block;
 	cursor: pointer;
 }
-header .btn-box .btn-signin:hover{
+header .btn-box .btn-code:hover{
 	background-color: rgba(255,255,255,1);
 	color: #00aadd;
 }
