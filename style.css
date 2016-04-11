@@ -21,6 +21,7 @@ header{
 	width: 100%;
 	height: 64px;
 	background-color: #00aadd;
+	box-shadow: 5px 0px 5px #444;
 	color: #eee;
 	min-width: 720px;
 	z-index: 1000;
