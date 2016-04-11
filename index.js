@@ -1,4 +1,4 @@
-windows.onload = function() {
+$(document).ready(function() {
 	//调用轮播函数
 	$('.picSlider').eq(0).picSlider();
 	$('.picSlider').eq(1).picSlider({
