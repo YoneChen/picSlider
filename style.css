@@ -22,6 +22,7 @@ header{
 	height: 64px;
 	background-color: #00aadd;
 	color: #eee;
+	min-width: 720px;
 	z-index: 1000;
 }
 header .title-box{
@@ -30,6 +31,15 @@ header .title-box{
 	background-color: #444;
 	padding: 20px;
 	float: left;
+}
+header .desc-box{
+	margin-top: 16px;
+	margin-left: 18px;
+	float: left;
+	color:#eee;
+}
+header .desc-box h3{
+	line-height: 16px;
 }
 header .btn-box{
 	margin-top: 16px;
