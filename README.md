@@ -1,5 +1,5 @@
 # picSlider
-A light-weight pictures carossel plugin based on jQuey.
+A light-weight pictures carossel plugin based on jQuery.
 It includes two common animations:Fade animation and Slide animation.
 ### Step1: Make sure both the picslider and jQuery scripts are included,and add picslider css to your html.
         <link rel="stylesheet" type="text/css" href="picSlider.css">
