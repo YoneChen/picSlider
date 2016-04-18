@@ -7,6 +7,8 @@
 
 		self.slides = null;
 
+		self.images = null;
+
 		self.current = 0; // 当前显示的图片下标
 
 		self.next = 1; // 下一张将显示的图片下标
@@ -42,6 +44,8 @@
 
 				slides: 'li',
 
+				images: 'img',
+
 				dotWrap: 'ol:first',
 
 				dotes: 'li'
@@ -60,6 +64,7 @@
 			// 初始化控件
 			self.container = self.context.find(self.options.selectors.container);
 			self.slides = self.container.find(self.options.selectors.slides);
+			self.images = self.slides.find(self.options.selectors.images);
 			self.length = self.slides.length;
 
 			// 样式初始化
@@ -83,7 +88,11 @@
 				self.context.css('position', 'relative');
 			}
 
-			self.context.css('overflow', 'hidden');
+			self.context.css({
+				overflow:'hidden',
+				width:self.images.width()+'px',
+				height:self.images.height()+'px'
+			});
 			self.container.addClass(self.classes.container)
 
 			// 隐藏所有图片，默认只显示第一张图
@@ -169,10 +178,10 @@
 				if(current != next) {
 					// console.log('from:'+self.current+',to:'+self.next);
 					if(current < next){
-						self.slides.eq(next).css('left', '1000px').show();
+						self.slides.eq(next).css('left', '640px').show();
 						self.dotes.removeClass('on');
-						self.slides.eq(current).animate({left:'-1000px'},self.options.speed, function() {
-							$(this).hide();
+						self.slides.eq(current).animate({left:'-640px'},self.options.speed, function() {
+							$(this).fadeOut();
 						});
 						self.dotes.eq(next).addClass('on');
 						self.slides.eq(next).animate({left:'0px'},self.options.speed, function() {
@@ -183,10 +192,10 @@
 
 						);
 					}else{
-						self.slides.eq(next).css('left', '-1000px').show();
+						self.slides.eq(next).css('left', '-640px').show();
 						self.dotes.removeClass('on');
-						self.slides.eq(current).animate({left:'2000px'},self.options.speed, function() {
-							$(this).hide();
+						self.slides.eq(current).animate({left:'640px'},self.options.speed, function() {
+							$(this).fadeOut();
 						});
 						self.dotes.eq(next).addClass('on');
 						self.slides.eq(next).animate({left:'0px'},self.options.speed, function() {
