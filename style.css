@@ -4,6 +4,9 @@
 	box-sizing: border-box;
 	font-family: arial;
 }
+li,ol{
+	list-style: none;
+}
 h1,h2,h3,a{
 	display: block;
 	text-decoration: none;
@@ -91,7 +94,6 @@ header .btn-box .btn-code:hover{
 .nav-bar li{
 	padding-left: 24px;
 	padding-right: 24px;
-	list-style: none;
 }
 .nav-bar li:hover{
 	background-color: #222;
