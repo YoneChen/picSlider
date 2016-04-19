@@ -9,6 +9,10 @@
 
 		self.images = null;
 
+		self.imageWidth = null;
+
+		self.imageHeight = null;
+
 		self.current = 0; // 当前显示的图片下标
 
 		self.next = 1; // 下一张将显示的图片下标
@@ -59,12 +63,16 @@
 
 		self.isstart = false;
 
+		self.timer = null;
+
 		self.init = function(options) {
 
 			// 初始化控件
 			self.container = self.context.find(self.options.selectors.container);
 			self.slides = self.container.find(self.options.selectors.slides);
 			self.images = self.slides.find(self.options.selectors.images);
+			self.imageWidth = self.images.width()+'px';
+			self.imageHeight = self.images.height()+'px';
 			self.length = self.slides.length;
 
 			// 样式初始化
@@ -89,9 +97,11 @@
 			}
 
 			self.context.css({
-				overflow:'hidden',
-				width:self.images.width()+'px',
-				height:self.images.height()+'px'
+				width:self.imageWidth,
+				height:self.imageHeight
+			});
+			self.slides.css({
+				transition:'transform '+self.options.speed/2+'ms ease-in-out'
 			});
 			self.container.addClass(self.classes.container)
 
@@ -104,9 +114,11 @@
 			self.container.after(self.dotWrap);
 			self.dotWrap = self.context.find(self.options.selectors.dotWrap);
 			self.dotWrap.addClass(self.classes.dotWrap);
+			var list = '';
 			for (var i = 0; i < self.length; i++) {
-				self.dotWrap.append('<li></li>');
+				list += '<li></li>';
 			}
+			self.dotWrap.append(list);
 			self.dotes = self.dotWrap.find(self.options.selectors.dotes);
 			self.dotes.eq(0).addClass('on');
 		};
@@ -133,7 +145,7 @@
 			}
 
 			if(options.event !== 'mouseover') options.event = 'click';
-			if(options.animate !== 'fade') options.animate = 'slide';
+			if(options.animate !== 'fade'&&options.animate !== 'rotate') options.animate = 'slide';
 		}
 
 		self.start = function() {
@@ -177,25 +189,18 @@
 
 				if(current != next) {
 					// console.log('from:'+self.current+',to:'+self.next);
+					var startPosition ,endPosition;
 					if(current < next){
-						self.slides.eq(next).css('left', '640px').show();
-						self.dotes.removeClass('on');
-						self.slides.eq(current).animate({left:'-640px'},self.options.speed, function() {
-							$(this).fadeOut();
-						});
-						self.dotes.eq(next).addClass('on');
-						self.slides.eq(next).animate({left:'0px'},self.options.speed, function() {
-
-							//改变下标
-							self.changeIndex();
-						}
-
-						);
+						startPosition = self.imageWidth;
+						endPosition = '-'+self.imageWidth;
 					}else{
-						self.slides.eq(next).css('left', '-640px').show();
+						startPosition = '-'+self.imageWidth;
+						endPosition = self.imageWidth;
+					}
+						self.slides.eq(next).css('left', startPosition).show();
 						self.dotes.removeClass('on');
-						self.slides.eq(current).animate({left:'640px'},self.options.speed, function() {
-							$(this).fadeOut();
+						self.slides.eq(current).animate({left:endPosition},self.options.speed, function() {
+							$(this).hide();
 						});
 						self.dotes.eq(next).addClass('on');
 						self.slides.eq(next).animate({left:'0px'},self.options.speed, function() {
@@ -205,7 +210,32 @@
 						}
 
 						);
-					}
+				}else {
+
+					//重复点击同一圆点，只改变下标
+					self.changeIndex();
+				}
+
+			},
+
+			// 翻转动画
+			rotate: function(current,next) {
+
+				if(current != next) {
+					// console.log('from:'+self.current+',to:'+self.next);
+						self.slides.eq(next).css('transform','perspective(600px) rotatey(-90deg)');
+						self.slides.eq(next).css('z-index','-1').show();
+						self.dotes.removeClass('on');
+						self.slides.eq(current).removeClass('rotateIn').addClass('rotateOut');
+						self.dotes.eq(next).addClass('on');
+						self.timer = setTimeout(function(){
+
+							self.slides.eq(next).addClass('rotateIn');
+							self.slides.eq(next).css('z-index','0');
+							self.slides.eq(current).hide().removeClass('rotateOut');
+							//改变下标
+							self.changeIndex();
+						}, self.options.speed/2);
 				}else {
 
 					//重复点击同一圆点，只改变下标
@@ -219,6 +249,7 @@
 			// 轮播停止事件
 			self.slides.stop(true, true); // 停止正在进行的图片动画
 			clearInterval(self.startid);
+			clearTimeout(self.timer);
 			self.isstart = false;
 			return self;
 		}

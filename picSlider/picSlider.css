@@ -1,6 +1,7 @@
 .picSlider{
 	margin: 0 auto;
 	position: relative;
+	overflow: hidden;
 }
 .picSlider-wrap{
 	overflow: hidden;
@@ -34,4 +35,11 @@
 }
 .picDot-wrap > .on{
 	background-color: #bbb;
+}
+
+.rotateOut{
+	transform:perspective(600px) rotatey(90deg)!important;
+}
+ .rotateIn{
+	transform:perspective(0px) rotatey(0deg)!important;
 }
