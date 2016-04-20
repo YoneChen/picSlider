@@ -1,7 +1,7 @@
 # picSlider
 A light-weight pictures carossel plugin based on jQuery.
 It includes three common animations:Fade animation,Slide animation and Rotate animation.
-### Step1: Make sure both the picslider and jQuery scripts are included,and add picslider css to your html.
+### Step1: Make sure both the picslider and jQuery scripts are included,and add picslider.css to your html.
         <link rel="stylesheet" type="text/css" href="picSlider.css">
 	<script type="text/javascript" src = "jquery.min.js"></script>
 	<script type="text/javascript" src = "picSlider.js"></script>
