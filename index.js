@@ -5,7 +5,7 @@ $(document).ready(function() {
 		delay:1000,       //图片展示时间 毫秒
 		speed:600,        //图片动画速度 毫秒
 		event:'mouseover',//动画触发类型
-		animate:'fade'    //动画类型
+		animate:'rotate'    //动画类型
 	});
     //获取导航距离页面顶部的距离  
     var introHeight = 450;  
